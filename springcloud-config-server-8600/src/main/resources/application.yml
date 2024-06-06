@@ -1,0 +1,38 @@
+server:
+  port: 8600 #???
+
+spring:
+  application:
+    name: springcloud-config-server # ????
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/hxf88/springcloud-config-server
+          username:  xiaopingguo88
+          password:  Hxf-0047
+  rabbitmq:
+    host: localhost # rabbitmq主机
+    port: 5672      # rabbitmq端口，注意是5672而不是15672
+    username: rabbit # 用户名
+    password: rabbit # 密码
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8300/eureka/,http://localhost:8301/eureka/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh # 指定刷新地址
+
+
+
+
